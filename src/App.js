@@ -3,6 +3,7 @@ import React from 'react';
 import './global.css';
 import './App.css';
 import './sidebar.css';
+import './main.css';
 
 function App() {
   return (
@@ -36,11 +37,59 @@ function App() {
           <button type="submit">Salvar</button>
         </form>
 
-
       </aside>
 
       <main>
+        <ul>
+          <li className="dev-item">
+            <header>
+              <img src="https://avatars2.githubusercontent.com/u/10717151?s=460&v=4" alt="André Ricardo Lagacione" />
+              <div className="user-info">
+                <strong>André Ricardo Lagacione</strong>
+                <span>Angular, Flutter, Java, Spring boot</span>
+              </div>
+            </header>
 
+            <p>Full stack developer!</p>
+            <a href="https://github.com/andreLagacione">Acessar perfil no Github</a>
+          </li>
+          <li className="dev-item">
+            <header>
+              <img src="https://avatars2.githubusercontent.com/u/10717151?s=460&v=4" alt="André Ricardo Lagacione" />
+              <div className="user-info">
+                <strong>André Ricardo Lagacione</strong>
+                <span>Angular, Flutter, Java, Spring boot</span>
+              </div>
+            </header>
+
+            <p>Full stack developer!</p>
+            <a href="https://github.com/andreLagacione">Acessar perfil no Github</a>
+          </li>
+          <li className="dev-item">
+            <header>
+              <img src="https://avatars2.githubusercontent.com/u/10717151?s=460&v=4" alt="André Ricardo Lagacione" />
+              <div className="user-info">
+                <strong>André Ricardo Lagacione</strong>
+                <span>Angular, Flutter, Java, Spring boot</span>
+              </div>
+            </header>
+
+            <p>Full stack developer!</p>
+            <a href="https://github.com/andreLagacione">Acessar perfil no Github</a>
+          </li>
+          <li className="dev-item">
+            <header>
+              <img src="https://avatars2.githubusercontent.com/u/10717151?s=460&v=4" alt="André Ricardo Lagacione" />
+              <div className="user-info">
+                <strong>André Ricardo Lagacione</strong>
+                <span>Angular, Flutter, Java, Spring boot</span>
+              </div>
+            </header>
+
+            <p>Full stack developer!</p>
+            <a href="https://github.com/andreLagacione">Acessar perfil no Github</a>
+          </li>
+        </ul>
       </main>
     </div>
   );
