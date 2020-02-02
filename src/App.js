@@ -9,6 +9,10 @@ import './main.css';
 import DevForm from './components/DevForm';
 import DevItem from './components/DevItem';
 
+/*
+  criar o update e delete dos registros
+*/
+
 function App() {
   
   const [devs, setDevs] = useState([]);
@@ -27,6 +31,15 @@ function App() {
     setDevs([...devs, response.data]);
   }
 
+  async function handleEditDev(devId) {
+    const response = await api.get(`/devs/${devId}`);
+    console.log(response);
+  }
+
+  async function handleDeleteDev(devId) {
+    alert('remove dev: ' + devId);
+  }
+
   return (
     <div id="app">
       <aside>
@@ -37,7 +50,7 @@ function App() {
       <main>
         <ul>
           {devs.map(dev => (
-            <DevItem key={dev._id} dev={dev} />
+            <DevItem key={dev._id} dev={dev} onEditDev={handleEditDev} onDeleteDev={handleDeleteDev} />
           ))}
         </ul>
       </main>
