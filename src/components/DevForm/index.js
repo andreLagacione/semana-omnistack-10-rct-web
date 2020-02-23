@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
-function DevForm({ onSubmit }) {
+function DevForm({ onSubmit, editDev }) {
+    const [id, setId] = useState('');
     const [github_username, setGithubUsername] = useState('');
     const [techs, setTechs] = useState('');
     const [latitude, setLatitude] = useState('');
@@ -16,22 +17,39 @@ function DevForm({ onSubmit }) {
                 console.log(err);
             }, {
             timeout: 30000
+        });
+
+        if (!(editDev instanceof Array)) {
+            console.log(editDev)
+            const techs = mapTechs(editDev.techs);
+            setId(editDev._id);
+            setGithubUsername(editDev.github_username);
+            setTechs(techs);
+            setLatitude(editDev.location.coordinates[1]);
+            setLongitude(editDev.location.coordinates[0]);
         }
-        );
-    }, []);
+    }, [editDev]);
 
     async function handleSubmit(e) {
         e.preventDefault();
 
         await onSubmit({
+            id,
             github_username,
             techs,
             latitude,
             longitude
         });
 
+        setId('');
         setGithubUsername('');
         setTechs('');
+    }
+
+    const mapTechs = (techs) => {
+        let _techs = '';
+        techs.map(item => _techs += `${item}, `);
+        return _techs;
     }
 
     return (
