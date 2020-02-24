@@ -19,25 +19,22 @@ function App() {
   const [editDev, setEditDev] = useState([]);
 
   useEffect(() => {
-    async function loadDevs() {
-      const response = await api.get('/devs');
-      setDevs(response.data);
-    }
-
     loadDevs();
   }, []);
 
-  async function handleAddDev(data) {
-    console.log(data);
-    let response;
+  async function loadDevs() {
+    const response = await api.get('/devs');
+    setDevs(response.data);
+  }
 
+  async function handleAddDev(data) {
     if (data.id) {
-      response = await api.put('/devs', data);
+      await api.put('/devs', data);
     } else {
-      response = await api.post('/devs', data);
+      await api.post('/devs', data);
     }
-    
-    setDevs([...devs, response.data]);
+
+    loadDevs();
   }
 
   async function handleEditDev(devId) {
@@ -46,7 +43,8 @@ function App() {
   }
 
   async function handleDeleteDev(devId) {
-    alert('remove dev: ' + devId);
+    await api.delete(`/devs/${devId}`);
+    loadDevs();
   }
 
   return (

@@ -6,6 +6,7 @@ function DevForm({ onSubmit, editDev }) {
     const [techs, setTechs] = useState('');
     const [latitude, setLatitude] = useState('');
     const [longitude, setLongitude] = useState('');
+    const [isDisabled, setIsDisabled] = useState(false);
 
     useEffect(() => {
         navigator.geolocation.getCurrentPosition(
@@ -20,13 +21,13 @@ function DevForm({ onSubmit, editDev }) {
         });
 
         if (!(editDev instanceof Array)) {
-            console.log(editDev)
             const techs = mapTechs(editDev.techs);
             setId(editDev._id);
             setGithubUsername(editDev.github_username);
             setTechs(techs);
             setLatitude(editDev.location.coordinates[1]);
             setLongitude(editDev.location.coordinates[0]);
+            setIsDisabled(true);
         }
     }, [editDev]);
 
@@ -44,6 +45,7 @@ function DevForm({ onSubmit, editDev }) {
         setId('');
         setGithubUsername('');
         setTechs('');
+        setIsDisabled(false);
     }
 
     const mapTechs = (techs) => {
@@ -62,6 +64,7 @@ function DevForm({ onSubmit, editDev }) {
                     required
                     value={github_username}
                     onChange={e => setGithubUsername(e.target.value)}
+                    disabled={isDisabled}
                 />
             </div>
 
